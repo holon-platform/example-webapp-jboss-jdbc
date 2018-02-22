@@ -109,10 +109,10 @@
 
 	<dependencies>
 
-		<!-- JDBC Datastore with HikariCP starter -->
+		<!-- JDBC Datastore -->
 		<dependency>
 			<groupId>com.holon-platform.jdbc</groupId>
-			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
+			<artifactId>holon-starter-jdbc-datastore</artifactId>
 		</dependency>
 
 		<!-- Vaadin + Undertow starter -->
@@ -131,13 +131,6 @@
 			<artifactId>spring-boot-starter-undertow</artifactId>
 			<version>${spring.boot.version}</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<!-- H2 database -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.196</version>
 		</dependency>
 
 	</dependencies>

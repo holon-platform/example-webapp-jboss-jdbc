@@ -1,3 +1,5 @@
+DELETE FROM products;
+
 INSERT INTO products (sku,description,category,price,withdrawn) VALUES ('product-1', 'Product 1', 'C1', 19.90, 0);
 INSERT INTO products (sku,description,category,price,withdrawn) VALUES ('product-2', 'Product 2', 'C2', 29.90, 0);
 INSERT INTO products (sku,description,category,price,withdrawn) VALUES ('product-3', 'Product 3', 'C1', 15.00, 0);

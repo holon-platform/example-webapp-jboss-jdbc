@@ -1,4 +1,4 @@
-create table products (
+create table if not exists products (
   id bigint primary key auto_increment,
   sku varchar(100) not null,
   description varchar(500),

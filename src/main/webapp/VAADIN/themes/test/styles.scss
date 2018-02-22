@@ -1,0 +1,11 @@
+@import "../valo/valo";
+
+.test {
+ 
+  	@include valo;
+  	
+  	.v-grid-cell.id-column {
+  		font-weight: bold;
+  	}
+   
+}

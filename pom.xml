@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.holon-platform.examples</groupId>
+	<artifactId>holon-example-webapp-jboss-jdbc</artifactId>
+	<version>1.0.0</version>
+
+	<packaging>war</packaging>
+
+	<name>Holon simple web application example</name>
+
+	<url>https://holon-platform.com</url>
+
+	<organization>
+		<name>The Holon Platform</name>
+		<url>https://holon-platform.com</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Riccardo Righi</name>
+			<email>rrighi@holon-platform.com</email>
+			<organization>The Holon Platform</organization>
+			<organizationUrl>https://holon-platform.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+		<vaadin.plugin.version>8.1.7</vaadin.plugin.version>
+
+		<holon.platform.version>5.0.6</holon.platform.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- Avoid web.xml -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+			<!-- Vaadin -->
+			<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.plugin.version}</version>
+				<executions>
+					<execution>
+						<configuration>
+						</configuration>
+						<goals>
+							<goal>resources</goal>
+							<goal>update-widgetset</goal>
+							<goal>compile</goal>
+							<goal>compile-theme</goal>
+							<goal>update-theme</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Spring boot -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Holon Platform BOM -->
+			<dependency>
+				<groupId>com.holon-platform</groupId>
+				<artifactId>bom</artifactId>
+				<version>${holon.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- JDBC Datastore with HikariCP starter -->
+		<dependency>
+			<groupId>com.holon-platform.jdbc</groupId>
+			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
+		</dependency>
+
+		<!-- Vaadin + Undertow starter -->
+		<dependency>
+			<groupId>com.holon-platform.vaadin</groupId>
+			<artifactId>holon-starter-vaadin-undertow</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+			<version>${spring.boot.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- H2 database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
